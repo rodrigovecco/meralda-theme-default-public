@@ -1,48 +1,574 @@
 /*
  * =============================================================================
- * Default Theme — CSS Override
- * =============================================================================
- *
- * This file is loaded AFTER the full UI2 CSS stack (Bootstrap 5 + UI2 layout,
- * components, and base theme), so anything you write here wins by default.
- *
- * QUICK-START: OVERRIDE CSS VARIABLES
- * ------------------------------------
- * UI2 exposes a set of CSS custom properties (variables) in its
- * /res/ui2/css/variables.css file.  You can override any of them here in a
- * :root block.  Common variables to customise:
- *
- *   :root {
- *     --mw-primary:          #0d6efd;   /* main accent colour            */
- *     --mw-primary-hover:    #0b5ed7;   /* hover / focus shade           */
- *     --mw-sidebar-bg:       #212529;   /* sidebar background            */
- *     --mw-sidebar-color:    #adb5bd;   /* sidebar text / icon colour    */
- *     --mw-topbar-bg:        #ffffff;   /* top-navigation background     */
- *     --mw-topbar-color:     #212529;   /* top-navigation text colour    */
- *     --mw-body-bg:          #f8f9fa;   /* page background               */
- *     --mw-body-color:       #212529;   /* default text colour           */
- *     --mw-card-bg:          #ffffff;   /* card / panel background       */
- *     --mw-font-family:      sans-serif;
- *     --mw-border-radius:    0.375rem;
- *   }
- *
- * ADDING CUSTOM ASSETS
- * --------------------
- * Put any images, fonts, or icon sets next to this file:
- *
- *   res/themes/default/css/custom.css   ← this file
- *   res/themes/default/fonts/my-font.woff2
- *   res/themes/default/img/logo.svg
- *
- * Reference them with relative paths from this CSS file:
- *
- *   @font-face {
- *     font-family: 'MyFont';
- *     src: url('../fonts/my-font.woff2') format('woff2');
- *   }
- *   .mw-sidebar { background-image: url('../img/sidebar-bg.jpg'); }
- *
- * =============================================================================
- * Write your overrides below this line
+ * Default Theme — Glassmorphism
  * =============================================================================
  */
+
+/* -----------------------------------------------------------------------------
+ * CSS Variables
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Primary accent - vibrant purple/blue gradient feel */
+  --mw-primary:          #7c3aed;
+  --mw-primary-hover:    #6d28d9;
+  --mw-primary-rgb:      124, 58, 237;
+  
+  /* Secondary accent */
+  --mw-secondary:        #06b6d4;
+  --mw-secondary-rgb:    6, 182, 212;
+  
+  /* Backgrounds */
+  --mw-body-bg:          #0f0f23;
+  --mw-body-color:       #f1f5f9;
+  --mw-card-bg:          rgba(255, 255, 255, 0.08);
+  
+  /* Sidebar */
+  --mw-sidebar-bg:       rgba(15, 15, 35, 0.85);
+  --mw-sidebar-color:    #cbd5e1;
+  
+  /* Topbar */
+  --mw-topbar-bg:        rgba(255, 255, 255, 0.05);
+  --mw-topbar-color:     #f1f5f9;
+  
+  /* Glass effect values */
+  --glass-blur:          16px;
+  --glass-bg:            rgba(255, 255, 255, 0.08);
+  --glass-border:        rgba(255, 255, 255, 0.15);
+  --glass-shadow:        0 8px 32px rgba(0, 0, 0, 0.3);
+  
+  /* Typography */
+  --mw-font-family:      'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mw-border-radius:    1rem;
+}
+
+/* -----------------------------------------------------------------------------
+ * Base & Background
+ * -------------------------------------------------------------------------- */
+body,
+body.sb-nav-fixed {
+  background: #f1f5f9 !important;
+  min-height: 100vh;
+  color: #1e293b !important;
+}
+
+#layoutSidenav {
+  background: transparent !important;
+}
+
+#layoutSidenav_content {
+  background: #f1f5f9 !important;
+}
+
+#layoutSidenav_content > main {
+  background: #f1f5f9 !important;
+}
+
+.container-fluid {
+  color: #1e293b !important;
+}
+
+
+
+/* -----------------------------------------------------------------------------
+ * Glass Card Effect - Light Theme
+ * -------------------------------------------------------------------------- */
+.card,
+.mw-card,
+.mw_ui_inner_space,
+.modal-content,
+.popover {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: var(--mw-border-radius) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  color: #1e293b;
+}
+
+.dropdown-menu {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 0.75rem !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.card-header,
+.modal-header {
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.card-footer,
+.modal-footer {
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* -----------------------------------------------------------------------------
+ * Form Controls - Light Theme
+ * -------------------------------------------------------------------------- */
+.form-control,
+.form-select,
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+textarea {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 0.75rem !important;
+  color: #1e293b !important;
+  padding: 0.75rem 1rem !important;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus,
+input:focus,
+textarea:focus {
+  background: #ffffff !important;
+  border-color: var(--mw-primary) !important;
+  box-shadow: 0 0 0 3px rgba(var(--mw-primary-rgb), 0.15) !important;
+  outline: none !important;
+}
+
+.form-control::placeholder,
+input::placeholder,
+textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+.form-floating > label {
+  color: #64748b;
+}
+
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label {
+  color: var(--mw-primary);
+}
+
+/* DevExtreme DataGrid - colors only, preserve default behavior */
+.dx-datagrid {
+  background: transparent !important;
+  color: #1e293b !important;
+}
+
+.dx-datagrid .dx-datagrid-headers {
+  background: #f8fafc !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+.dx-datagrid .dx-header-row > td {
+  background: #f8fafc !important;
+  color: #64748b !important;
+  font-weight: 600 !important;
+  font-size: 0.75rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  border-color: #e2e8f0 !important;
+}
+
+.dx-datagrid .dx-datagrid-filter-row > td {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+.dx-datagrid .dx-datagrid-rowsview .dx-row {
+  background: #ffffff !important;
+}
+
+.dx-datagrid .dx-datagrid-rowsview .dx-row:hover {
+  background: #f8fafc !important;
+}
+
+.dx-datagrid .dx-datagrid-rowsview .dx-row > td {
+  border-color: #e2e8f0 !important;
+  color: #1e293b !important;
+}
+
+.dx-datagrid .dx-datagrid-rowsview .dx-row-alt {
+  background: #fafbfc !important;
+}
+
+.dx-datagrid .dx-column-lines > td {
+  border-right-color: #e2e8f0 !important;
+}
+
+.dx-datagrid .dx-row-lines > td {
+  border-bottom-color: #e2e8f0 !important;
+}
+
+.dx-datagrid-borders > .dx-datagrid-headers {
+  border-top: 1px solid #e2e8f0 !important;
+}
+
+.dx-datagrid .dx-datagrid-pager {
+  background: #f8fafc !important;
+  border-top: 1px solid #e2e8f0 !important;
+  padding: 0.75rem !important;
+}
+
+.dx-pager .dx-pages .dx-page {
+  border-radius: 0.375rem !important;
+}
+
+.dx-pager .dx-pages .dx-selection {
+  background: var(--mw-primary) !important;
+  color: #fff !important;
+}
+
+/* -----------------------------------------------------------------------------
+ * Buttons
+ * -------------------------------------------------------------------------- */
+.btn {
+  border-radius: 0.75rem;
+  padding: 0.625rem 1.5rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--mw-primary) 0%, #9333ea 100%);
+  border: none;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(var(--mw-primary-rgb), 0.3);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background: linear-gradient(135deg, var(--mw-primary-hover) 0%, #7c3aed 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(var(--mw-primary-rgb), 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary,
+.btn-outline-secondary {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+}
+
+.btn-secondary:hover,
+.btn-outline-secondary:hover {
+  background: #e2e8f0;
+  border-color: #cbd5e1;
+  color: #1e293b;
+}
+
+/* Subtle button glow on hover */
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease, height 0.4s ease;
+}
+
+.btn:hover::after {
+  width: 300px;
+  height: 300px;
+  opacity: 0;
+}
+
+/* -----------------------------------------------------------------------------
+ * Sidebar - SB Admin / UI2 specific
+ * -------------------------------------------------------------------------- */
+.mw-sidebar,
+.sidebar,
+.sb-sidenav,
+[class*="sidebar"] {
+  background: var(--mw-sidebar-bg) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sb-sidenav-dark {
+  background: var(--mw-sidebar-bg) !important;
+}
+
+.sb-sidenav-footer {
+  background: rgba(0, 0, 0, 0.2) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mw-sidebar .nav-link,
+.sidebar .nav-link,
+.sb-sidenav .nav-link,
+.sb-sidenav-menu .nav-link {
+  color: var(--mw-sidebar-color) !important;
+  border-radius: 0.5rem;
+  margin: 0.125rem 0.5rem;
+  padding: 0.625rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.mw-sidebar .nav-link:hover,
+.sidebar .nav-link:hover,
+.sb-sidenav .nav-link:hover,
+.sb-sidenav-menu .nav-link:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #fff !important;
+}
+
+.mw-sidebar .nav-link.active,
+.sidebar .nav-link.active,
+.sb-sidenav .nav-link.active {
+  background: linear-gradient(135deg, rgba(var(--mw-primary-rgb), 0.3) 0%, rgba(var(--mw-primary-rgb), 0.1) 100%) !important;
+  color: #fff !important;
+  border-left: 3px solid var(--mw-primary);
+}
+
+/* -----------------------------------------------------------------------------
+ * Topbar / Navbar - SB Admin specific
+ * -------------------------------------------------------------------------- */
+.mw-topbar,
+.navbar,
+.sb-topnav,
+[class*="topbar"] {
+  background: rgba(15, 15, 35, 0.8) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.navbar-light .navbar-brand,
+.sb-topnav .navbar-brand {
+  color: #fff !important;
+  font-weight: 600;
+}
+
+.navbar-light .navbar-nav .nav-link,
+.sb-topnav .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+  color: #fff !important;
+}
+
+/* -----------------------------------------------------------------------------
+ * Tables - Light Theme
+ * -------------------------------------------------------------------------- */
+.table {
+  --bs-table-bg: transparent;
+  --bs-table-color: #1e293b;
+  border-color: #e2e8f0;
+}
+
+.table thead th {
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  color: #64748b;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.table td, .table th {
+  border-color: #e2e8f0;
+  padding: 1rem;
+}
+
+/* -----------------------------------------------------------------------------
+ * Links - Light Theme
+ * -------------------------------------------------------------------------- */
+a {
+  color: var(--mw-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--mw-primary-hover);
+}
+
+/* -----------------------------------------------------------------------------
+ * Sub-Navigation (currentUINavBar) - Pinned Section Nav
+ * -------------------------------------------------------------------------- */
+.currentUINavBar {
+  background: rgba(15, 15, 35, 0.85) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 0.75rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.currentUINavBar .nav-link {
+  color: rgba(255, 255, 255, 0.8) !important;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  margin: 0.125rem;
+  transition: all 0.2s ease;
+}
+
+.currentUINavBar .nav-link:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: #fff !important;
+}
+
+.currentUINavBar .nav-link.active {
+  background: var(--mw-primary) !important;
+  color: #fff !important;
+}
+
+/* -----------------------------------------------------------------------------
+ * Alerts & Badges - Light Theme
+ * -------------------------------------------------------------------------- */
+.alert {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--mw-border-radius);
+}
+
+.alert-primary {
+  background: #f5f3ff;
+  border-left: 4px solid var(--mw-primary);
+}
+
+.alert-success {
+  background: #ecfdf5;
+  border-left: 4px solid #10b981;
+}
+
+.alert-warning {
+  background: #fffbeb;
+  border-left: 4px solid #f59e0b;
+}
+
+.alert-danger {
+  background: #fef2f2;
+  border-left: 4px solid #ef4444;
+}
+
+.badge {
+  border-radius: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  font-weight: 500;
+}
+
+.badge.bg-primary {
+  background: linear-gradient(135deg, var(--mw-primary) 0%, #9333ea 100%) !important;
+}
+
+/* -----------------------------------------------------------------------------
+ * Scrollbar - Light Theme
+ * -------------------------------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* -----------------------------------------------------------------------------
+ * Login Page Specific
+ * -------------------------------------------------------------------------- */
+/* Center the login card nicely */
+.mw-login-container,
+[class*="login"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+/* Make login card stand out more */
+.mw-login-card,
+.card:has(input[type="password"]) {
+  max-width: 420px;
+  width: 100%;
+  padding: 2rem;
+}
+
+/* Heading style - Dark for light content area */
+h1, h2, h3, h4, h5, h6 {
+  color: #1e293b !important;
+  font-weight: 600;
+}
+
+/* Keep headings in sidebar/topbar light */
+.sb-sidenav h1, .sb-sidenav h2, .sb-sidenav h3, .sb-sidenav h4, .sb-sidenav h5, .sb-sidenav h6,
+.sb-topnav h1, .sb-topnav h2, .sb-topnav h3, .sb-topnav h4, .sb-topnav h5, .sb-topnav h6 {
+  color: #fff !important;
+}
+
+footer,
+.footer,
+#layoutSidenav_content footer {
+  color: #64748b !important;
+  background: transparent !important;
+}
+
+/* -----------------------------------------------------------------------------
+ * Utility Classes
+ * -------------------------------------------------------------------------- */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--mw-border-radius);
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+/* Glow effects */
+.glow-primary {
+  box-shadow: 0 0 40px rgba(var(--mw-primary-rgb), 0.3);
+}
+
+.glow-secondary {
+  box-shadow: 0 0 40px rgba(var(--mw-secondary-rgb), 0.3);
+}
+
+/* Text gradient */
+.text-gradient {
+  background: linear-gradient(135deg, var(--mw-primary) 0%, var(--mw-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Smooth transitions globally */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-duration: 0.15s;
+  transition-timing-function: ease;
+}
