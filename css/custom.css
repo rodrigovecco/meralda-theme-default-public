@@ -1,0 +1,48 @@
+/*
+ * =============================================================================
+ * Default Theme — CSS Override
+ * =============================================================================
+ *
+ * This file is loaded AFTER the full UI2 CSS stack (Bootstrap 5 + UI2 layout,
+ * components, and base theme), so anything you write here wins by default.
+ *
+ * QUICK-START: OVERRIDE CSS VARIABLES
+ * ------------------------------------
+ * UI2 exposes a set of CSS custom properties (variables) in its
+ * /res/ui2/css/variables.css file.  You can override any of them here in a
+ * :root block.  Common variables to customise:
+ *
+ *   :root {
+ *     --mw-primary:          #0d6efd;   /* main accent colour            */
+ *     --mw-primary-hover:    #0b5ed7;   /* hover / focus shade           */
+ *     --mw-sidebar-bg:       #212529;   /* sidebar background            */
+ *     --mw-sidebar-color:    #adb5bd;   /* sidebar text / icon colour    */
+ *     --mw-topbar-bg:        #ffffff;   /* top-navigation background     */
+ *     --mw-topbar-color:     #212529;   /* top-navigation text colour    */
+ *     --mw-body-bg:          #f8f9fa;   /* page background               */
+ *     --mw-body-color:       #212529;   /* default text colour           */
+ *     --mw-card-bg:          #ffffff;   /* card / panel background       */
+ *     --mw-font-family:      sans-serif;
+ *     --mw-border-radius:    0.375rem;
+ *   }
+ *
+ * ADDING CUSTOM ASSETS
+ * --------------------
+ * Put any images, fonts, or icon sets next to this file:
+ *
+ *   res/themes/default/css/custom.css   ← this file
+ *   res/themes/default/fonts/my-font.woff2
+ *   res/themes/default/img/logo.svg
+ *
+ * Reference them with relative paths from this CSS file:
+ *
+ *   @font-face {
+ *     font-family: 'MyFont';
+ *     src: url('../fonts/my-font.woff2') format('woff2');
+ *   }
+ *   .mw-sidebar { background-image: url('../img/sidebar-bg.jpg'); }
+ *
+ * =============================================================================
+ * Write your overrides below this line
+ * =============================================================================
+ */
