@@ -1,3 +1,1505 @@
+/* ============================================================
+   MERALDA ADMIN — Design System v3
+   Style   : Moderno / Clean
+   Palette : Slate / Neutral
+   UX Principles applied:
+     Fitts's Law      — tap targets ≥44px, sidebar links padded
+     Hick's Law       — grupos visuales claros, logout diferenciado
+     Gestalt          — proximidad, continuidad, figura-fondo
+     F-pattern        — breadcrumb horizontal, col headers claros
+     Aesthetic-Usability — bello = confiable = más usable
+     Error Prevention — destructivos (logout) visualmente distintos
+     WCAG AA          — focus-visible en todos los elementos
+     Progressive Disc — breadcrumb, tabs activos, jerarquía de sombras
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+
+/* ══════════════════════════════════════════════════════════
+   § 1  DESIGN TOKENS
+   ══════════════════════════════════════════════════════════ */
+:root {
+    /* ── Palette ── */
+    --c-slate-50:   #f8fafc;
+    --c-slate-100:  #f1f5f9;
+    --c-slate-200:  #e2e8f0;
+    --c-slate-300:  #cbd5e1;
+    --c-slate-400:  #94a3b8;
+    --c-slate-500:  #64748b;
+    --c-slate-600:  #475569;
+    --c-slate-700:  #334155;
+    --c-slate-800:  #1e293b;
+    --c-slate-900:  #0f172a;
+    --c-slate-950:  #020617;
+    --c-white:      #ffffff;
+
+    /* Status */
+    --c-green-50:   #f0fdf4;
+    --c-green-500:  #22c55e;
+    --c-green-600:  #16a34a;
+    --c-green-700:  #15803d;
+    --c-green-900:  #14532d;
+    --c-red-50:     #fef2f2;
+    --c-red-200:    #fecaca;
+    --c-red-600:    #dc2626;
+    --c-red-900:    #7f1d1d;
+    --c-amber-50:   #fffbeb;
+    --c-amber-200:  #fde68a;
+    --c-amber-600:  #d97706;
+    --c-amber-900:  #78350f;
+    --c-sky-50:     #f0f9ff;
+    --c-sky-200:    #bae6fd;
+    --c-sky-600:    #0284c7;
+    --c-sky-900:    #0c4a6e;
+
+    /* ── UI2 token overrides ── */
+    --ui2-primary:              var(--c-slate-800);
+    --ui2-primary-hover:        var(--c-slate-900);
+    --ui2-primary-active:       var(--c-slate-950);
+    --ui2-primary-rgb:          30, 41, 59;
+    --ui2-primary-light:        var(--c-slate-100);
+
+    --ui2-secondary:            var(--c-slate-400);
+    --ui2-secondary-hover:      var(--c-slate-500);
+    --ui2-secondary-active:     var(--c-slate-600);
+    --ui2-secondary-rgb:        100, 116, 139;
+
+    --ui2-success:              var(--c-green-600);
+    --ui2-success-hover:        var(--c-green-700);
+    --ui2-danger:               var(--c-red-600);
+    --ui2-danger-hover:         #b91c1c;
+    --ui2-warning:              var(--c-amber-600);
+    --ui2-info:                 var(--c-sky-600);
+
+    --ui2-brand:                var(--c-slate-900);
+    --ui2-brand-accent:         var(--c-slate-600);
+
+    /* ── Surfaces ── */
+    --ui2-body-bg:              var(--c-slate-100);
+    --ui2-body-color:           var(--c-slate-800);
+    --ui2-content-bg:           var(--c-white);
+
+    /* ── Topbar ── */
+    --ui2-topbar-bg:            var(--c-white);
+    --ui2-topbar-color:         var(--c-slate-500);
+    --ui2-topbar-color-hover:   var(--c-slate-900);
+    --ui2-topbar-brand-color:   var(--c-slate-900);
+    --ui2-topbar-border:        var(--c-slate-200);
+    --ui2-topbar-shadow:        0 1px 3px 0 rgba(15,23,42,.06);
+    --ui2-topbar-height:        56px;
+
+    /* ── Sidebar ── */
+    --ui2-sidebar-bg:           var(--c-slate-900);
+    --ui2-sidebar-bg-solid:     var(--c-slate-900);
+    --ui2-sidebar-color:        rgba(148,163,184,.8);
+    --ui2-sidebar-color-hover:  rgba(241,245,249,.95);
+    --ui2-sidebar-color-active: var(--c-white);
+    --ui2-sidebar-heading-color:rgba(100,116,139,.5);
+    --ui2-sidebar-divider-color:rgba(255,255,255,.07);
+    --ui2-sidebar-footer-bg:    rgba(0,0,0,.18);
+    --ui2-sidebar-active-bg:    rgba(255,255,255,.09);
+    --ui2-sidebar-hover-bg:     rgba(255,255,255,.05);
+    --ui2-sidebar-width:        248px;
+
+    /* ── Cards ── */
+    --ui2-card-bg:              var(--c-white);
+    --ui2-card-border:          var(--c-slate-200);
+    --ui2-card-shadow:          0 1px 2px 0 rgba(15,23,42,.05);
+    --ui2-card-radius:          0.75rem;
+
+    /* ── Borders & Radius ── */
+    --ui2-border-color:         var(--c-slate-200);
+    --ui2-border-color-light:   var(--c-slate-100);
+    --ui2-border-radius-sm:     0.375rem;
+    --ui2-border-radius:        0.5rem;
+    --ui2-border-radius-lg:     0.75rem;
+    --ui2-border-radius-xl:     1rem;
+    --ui2-border-radius-2xl:    1.5rem;
+    --ui2-border-radius-full:   9999px;
+
+    /* ── Typography ── */
+    --ui2-font-family:          'Inter', -apple-system, BlinkMacSystemFont,
+                                'Segoe UI', sans-serif;
+    --ui2-font-size-base:       0.875rem;
+    --ui2-font-size-sm:         0.8125rem;
+    --ui2-font-size-xs:         0.75rem;
+
+    /* ── Focus / Ring ── */
+    --ui2-ring-color:           rgba(30,41,59,.15);
+    --ui2-ring-offset:          2px;
+
+    /* ── Shadows ── */
+    --shadow-xs:   0 1px 2px 0 rgba(15,23,42,.04);
+    --shadow-sm:   0 1px 3px 0 rgba(15,23,42,.08), 0 1px 2px -1px rgba(15,23,42,.06);
+    --shadow-md:   0 4px 6px -1px rgba(15,23,42,.08), 0 2px 4px -2px rgba(15,23,42,.06);
+    --shadow-lg:   0 10px 15px -3px rgba(15,23,42,.08), 0 4px 6px -4px rgba(15,23,42,.06);
+    --shadow-xl:   0 20px 25px -5px rgba(15,23,42,.1),  0 8px 10px -6px rgba(15,23,42,.08);
+
+    /* ── Transitions ── */
+    --t-fast:   150ms cubic-bezier(.4,0,.2,1);
+    --t-base:   200ms cubic-bezier(.4,0,.2,1);
+    --t-slow:   300ms cubic-bezier(.4,0,.2,1);
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   § 2  GLOBAL RESET & BASE
+   ══════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; }
+
 body {
-    background-color: #ff0000 !important;
+    font-family:             var(--ui2-font-family) !important;
+    font-size:               var(--ui2-font-size-base) !important;
+    color:                   var(--ui2-body-color) !important;
+    -webkit-font-smoothing:  antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Login uses this; layout hides it under the content bg */
+    background: linear-gradient(145deg, var(--c-slate-900) 0%, var(--c-slate-800) 100%) !important;
+    min-height: 100vh;
+}
+
+/* Content wrapper in the logged-in layout */
+#layoutSidenav_content {
+    background-color: var(--ui2-body-bg) !important;
+    min-height: calc(100vh - var(--ui2-topbar-height));
+}
+#layoutSidenav_content main {
+    padding: 1.5rem !important;
+}
+
+/* Subtle fade-in for page content */
+#layoutSidenav_content main > * {
+    animation: mw-fadein var(--t-slow) ease both;
+}
+@keyframes mw-fadein {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0);   }
+}
+
+/* ══════════════════════════════════════════════════════════
+   § 3  SCROLLBAR
+   ══════════════════════════════════════════════════════════ */
+::-webkit-scrollbar              { width: 5px; height: 5px; }
+::-webkit-scrollbar-track        { background: transparent; }
+::-webkit-scrollbar-thumb        { background: rgba(100,116,139,.28); border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover  { background: rgba(100,116,139,.55); }
+::-webkit-scrollbar-corner       { background: transparent; }
+
+
+/* ══════════════════════════════════════════════════════════
+   § 4  TOPBAR
+   ══════════════════════════════════════════════════════════ */
+.sb-topnav {
+    background-color: var(--ui2-topbar-bg) !important;
+    border-bottom:    1px solid var(--ui2-topbar-border) !important;
+    box-shadow:       var(--ui2-topbar-shadow) !important;
+    height:           var(--ui2-topbar-height);
+    padding:          0 1rem !important;
+    z-index:          1039;
+}
+
+.sb-topnav .navbar-brand {
+    color:          var(--ui2-topbar-brand-color) !important;
+    font-weight:    700 !important;
+    font-size:      0.9375rem !important;
+    letter-spacing: -0.03em;
+    padding:        0 !important;
+}
+
+.sb-topnav .btn-link {
+    color:      var(--ui2-topbar-color) !important;
+    transition: color var(--t-fast) !important;
+}
+.sb-topnav .btn-link:hover { color: var(--ui2-topbar-color-hover) !important; }
+
+.sb-topnav .nav-link {
+    color:       var(--ui2-topbar-color) !important;
+    font-size:   var(--ui2-font-size-sm) !important;
+    font-weight: 500 !important;
+    padding:     0.375rem 0.625rem !important;
+    border-radius: var(--ui2-border-radius-sm) !important;
+    transition:  background-color var(--t-fast), color var(--t-fast) !important;
+}
+.sb-topnav .nav-link:hover {
+    color:            var(--ui2-topbar-color-hover) !important;
+    background-color: var(--c-slate-100) !important;
+}
+
+.sb-topnav .dropdown-menu {
+    min-width:     180px !important;
+    border:        1px solid var(--ui2-border-color) !important;
+    border-radius: var(--ui2-border-radius-lg) !important;
+    box-shadow:    var(--shadow-lg) !important;
+    padding:       0.375rem !important;
+    font-size:     var(--ui2-font-size-sm) !important;
+    animation:     mw-dropdown var(--t-fast) ease both;
+}
+@keyframes mw-dropdown {
+    from { opacity: 0; transform: translateY(-6px) scale(.98); }
+    to   { opacity: 1; transform: translateY(0)    scale(1);   }
+}
+.sb-topnav .dropdown-item {
+    border-radius: var(--ui2-border-radius-sm) !important;
+    padding:       0.45rem 0.75rem !important;
+    color:         var(--ui2-body-color) !important;
+    font-weight:   500;
+    transition:    background-color var(--t-fast) !important;
+}
+.sb-topnav .dropdown-item:hover {
+    background-color: var(--c-slate-100) !important;
+    color:            var(--c-slate-900) !important;
+}
+.sb-topnav .dropdown-divider {
+    border-color: var(--ui2-border-color) !important;
+    margin:       0.25rem 0.5rem !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   § 5  SIDEBAR
+   ══════════════════════════════════════════════════════════ */
+.sb-sidenav {
+    background-color: var(--ui2-sidebar-bg) !important;
+    width:            var(--ui2-sidebar-width);
+    border-right:     none !important;
+}
+
+/* Scrollbar inside sidebar */
+.sb-sidenav::-webkit-scrollbar       { width: 3px; }
+.sb-sidenav::-webkit-scrollbar-thumb { background: rgba(255,255,255,.1); }
+
+/* Nav links */
+.sb-sidenav-dark .sb-sidenav-menu .nav-link {
+    position:      relative !important;
+    color:         var(--ui2-sidebar-color) !important;
+    font-size:     var(--ui2-font-size-sm) !important;
+    font-weight:   500 !important;
+    border-radius: 0.5rem !important;
+    margin:        1px 10px !important;
+    padding:       0.5rem 0.75rem !important;
+    border:        none !important;
+    outline:       none !important;
+    box-shadow:    none !important;
+    display:       flex;
+    align-items:   center;
+    gap:           0.625rem;
+    transition:    background-color var(--t-fast),
+                   color var(--t-fast) !important;
+    background:    transparent !important;
+}
+
+/* Palito blanco — pseudo-element independiente del background redondeado */
+.sb-sidenav-dark .sb-sidenav-menu .nav-link::before {
+    content:       '' !important;
+    position:      absolute !important;
+    left:          0 !important;
+    top:           50% !important;
+    transform:     translateY(-50%) !important;
+    height:        1.25rem !important;
+    width:         3px !important;
+    border-radius: 0 2px 2px 0 !important;
+    background:    transparent !important;
+    transition:    background var(--t-fast) !important;
+}
+
+.sb-sidenav-dark .sb-sidenav-menu .nav-link .sb-nav-link-icon {
+    font-size:   0.75rem !important;
+    width:       1rem;
+    text-align:  center;
+    flex-shrink: 0;
+    opacity:     0.7;
+    transition:  opacity var(--t-fast) !important;
+}
+
+/* Hover — palito blanco suave, sin fondo */
+.sb-sidenav-dark .sb-sidenav-menu .nav-link:hover {
+    color:            var(--ui2-sidebar-color-hover) !important;
+    background-color: transparent !important;
+}
+.sb-sidenav-dark .sb-sidenav-menu .nav-link:hover::before {
+    background: rgba(255,255,255,.4) !important;
+}
+.sb-sidenav-dark .sb-sidenav-menu .nav-link:hover .sb-nav-link-icon {
+    opacity: 1 !important;
+}
+
+/* Active — palito blanco brillante + fondo sutil redondeado */
+.sb-sidenav-dark .sb-sidenav-menu .nav-item.active > .nav-link,
+.sb-sidenav-dark .sb-sidenav-menu .nav-link.active {
+    color:            var(--ui2-sidebar-color-active) !important;
+    background-color: var(--ui2-sidebar-active-bg) !important;
+    font-weight:      600 !important;
+}
+.sb-sidenav-dark .sb-sidenav-menu .nav-item.active > .nav-link::before,
+.sb-sidenav-dark .sb-sidenav-menu .nav-link.active::before {
+    background: rgba(255,255,255,.7) !important;
+}
+.sb-sidenav-dark .sb-sidenav-menu .nav-item.active > .nav-link .sb-nav-link-icon,
+.sb-sidenav-dark .sb-sidenav-menu .nav-link.active .sb-nav-link-icon {
+    opacity: 1 !important;
+}
+
+/* Dividers */
+.sb-sidenav-dark .sb-sidenav-menu hr {
+    border-color: var(--ui2-sidebar-divider-color) !important;
+    margin: 0.5rem 1.25rem !important;
+    opacity: 1 !important;
+}
+
+/* Sidebar header padding */
+.sb-sidenav-dark .sb-sidenav-menu .sb-sidenav-menu-heading {
+    font-size:      0.625rem !important;
+    font-weight:    700 !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+    color:          var(--ui2-sidebar-heading-color) !important;
+    padding:        1rem 1.25rem 0.375rem !important;
+}
+
+/* Footer */
+.sb-sidenav-footer {
+    background-color: var(--ui2-sidebar-footer-bg) !important;
+    border-top:       1px solid var(--ui2-sidebar-divider-color) !important;
+    padding:          0.875rem 1rem !important;
+}
+.sb-sidenav-footer .small {
+    font-size: 0.6875rem !important;
+    color:     var(--ui2-sidebar-color) !important;
+    opacity:   0.7;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   § 6  PAGE HEADER  (.mw-subinterface-header)
+   F-pattern: breadcrumb inline → "Demo › Formularios"
+   Usamos inline en los hijos para no depender de que el
+   contenedor padre sea flex (más robusto ante otros CSS).
+   ══════════════════════════════════════════════════════════ */
+
+.mw-subinterface-header {
+    display:        block !important;
+    padding:        1rem 0 0.75rem !important;
+    margin-bottom:  0 !important;
+    line-height:    1.5 !important;
+    /* quitar borde/estilo del framework */
+    border-bottom:  none !important;
+    font-size:      inherit !important;
+    font-weight:    inherit !important;
+    margin-top:     0 !important;
+}
+
+/* Route ("Demo") — inline para fluir junto al título */
+.mw-subinterface-header-route {
+    display:     inline !important;
+    font-size:   var(--ui2-font-size-sm) !important;
+    font-weight: 500 !important;
+    color:       var(--c-slate-400) !important;
+    padding:     0 !important;
+}
+/* Chevron automático después del route */
+.mw-subinterface-header-route::after {
+    content:      " › ";
+    color:        var(--c-slate-300) !important;
+    font-size:    var(--ui2-font-size-sm);
+    font-weight:  400;
+    white-space:  pre;
+}
+.mw-subinterface-header-route a {
+    font-size:       var(--ui2-font-size-sm) !important;
+    font-weight:     500 !important;
+    color:           var(--c-slate-400) !important;
+    text-decoration: none !important;
+    transition:      color var(--t-fast) !important;
+}
+.mw-subinterface-header-route a:hover { color: var(--c-slate-600) !important; }
+
+/* Titles container — inline para seguir en la misma línea */
+.mw-subinterface-header-titles {
+    display: inline !important;
+}
+.mw-subinterface-header-title {
+    display:        inline !important;
+    font-size:      1.0625rem !important;
+    font-weight:    600 !important;
+    color:          var(--c-slate-900) !important;
+    letter-spacing: -0.02em !important;
+    line-height:    1.5 !important;
+}
+
+/* Divider below header */
+hr.mw-subinterface-header-divider {
+    border-color: var(--ui2-border-color) !important;
+    margin:       0.375rem 0 1rem !important;
+    opacity:      1 !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   § 7  SUBINTERFACE NAV BAR  (.currentUINavBar)
+   ══════════════════════════════════════════════════════════ */
+.currentUINavBar {
+    background-color: var(--c-white) !important;
+    border:           none !important;
+    border-bottom:    1px solid var(--ui2-border-color) !important;
+    border-radius:    0 !important;
+    padding:          0 0.5rem !important;
+}
+
+.currentUINavBar .navbar-nav {
+    gap: 0 !important;
+}
+
+.currentUINavBar .nav-link {
+    font-size:     var(--ui2-font-size-sm) !important;
+    font-weight:   500 !important;
+    color:         var(--c-slate-500) !important;
+    border-bottom: 2px solid transparent !important;
+    border-radius: 0 !important;
+    padding:       0.625rem 0.875rem !important;
+    transition:    color var(--t-fast), border-color var(--t-fast) !important;
+    white-space:   nowrap;
+    background:    transparent !important;
+    margin-bottom: -1px !important;
+}
+.currentUINavBar .nav-link:hover {
+    color:         var(--c-slate-700) !important;
+    border-bottom: 2px solid var(--c-slate-300) !important;
+    background:    transparent !important;
+}
+
+/* Active tab */
+.currentUINavBar .nav-item.active > .nav-link,
+.currentUINavBar .nav-link.active {
+    color:         var(--c-slate-900) !important;
+    font-weight:   600 !important;
+    border-bottom: 2px solid var(--c-slate-800) !important;
+    background:    transparent !important;
+}
+
+/* Dropdown arrow */
+.currentUINavBar .dropdown-toggle::after {
+    opacity:     0.45;
+    margin-left: 0.3em;
+}
+
+/* Card directly below navbar — connect visually */
+.currentUINavBar + .card,
+.currentUINavBar + div > .card:first-child {
+    border-top-left-radius:  0 !important;
+    border-top-right-radius: 0 !important;
+    border-top:              none !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   § 8  CARDS
+   ══════════════════════════════════════════════════════════ */
+.card {
+    background-color: var(--ui2-card-bg) !important;
+    border:           1px solid var(--ui2-card-border) !important;
+    border-radius:    var(--ui2-card-radius) !important;
+    box-shadow:       var(--ui2-card-shadow) !important;
+}
+
+.card-header {
+    background-color: transparent !important;
+    border-bottom:    1px solid var(--ui2-border-color) !important;
+    padding:          0.875rem 1.25rem !important;
+    display:          flex;
+    align-items:      center;
+    gap:              0.5rem;
+}
+
+.card-header .card-title {
+    margin:      0 !important;
+    font-size:   var(--ui2-font-size-base) !important;
+    font-weight: 600 !important;
+    color:       var(--c-slate-800) !important;
+    letter-spacing: -0.01em;
+}
+
+.card-body { padding: 1.25rem !important; }
+.card-footer {
+    background-color: var(--c-slate-50) !important;
+    border-top:       1px solid var(--ui2-border-color) !important;
+    padding:          0.875rem 1.25rem !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   § 9  TYPOGRAPHY & LISTS
+   ══════════════════════════════════════════════════════════ */
+h1, h2, h3, h4, h5, h6 {
+    font-family:    var(--ui2-font-family) !important;
+    letter-spacing: -0.025em;
+    color:          var(--c-slate-900);
+}
+
+a {
+    color:           var(--c-sky-600);
+    text-decoration: none;
+    transition:      color var(--t-fast);
+}
+a:hover { color: var(--c-sky-900); }
+
+/* Text utilities */
+.text-muted  { color: var(--c-slate-400) !important; }
+.text-small,
+small        { font-size: var(--ui2-font-size-xs) !important; color: var(--c-slate-500); }
+
+
+/* ══════════════════════════════════════════════════════════
+   § 10  FORMS
+   ══════════════════════════════════════════════════════════ */
+.form-label,
+label:not(.btn):not(.form-check-label):not(.dx-checkbox-text) {
+    font-size:     var(--ui2-font-size-sm) !important;
+    font-weight:   500 !important;
+    color:         var(--c-slate-700) !important;
+    margin-bottom: 0.375rem !important;
+    display:       block;
+}
+
+.form-control,
+.form-select {
+    font-family:      var(--ui2-font-family) !important;
+    font-size:        var(--ui2-font-size-base) !important;
+    color:            var(--c-slate-800) !important;
+    background-color: var(--c-white) !important;
+    border:           1px solid var(--c-slate-300) !important;
+    border-radius:    var(--ui2-border-radius) !important;
+    padding:          0.5rem 0.75rem !important;
+    line-height:      1.5;
+    transition:       border-color var(--t-fast),
+                      box-shadow var(--t-fast),
+                      background-color var(--t-fast) !important;
+}
+.form-control:hover,
+.form-select:hover {
+    border-color: var(--c-slate-400) !important;
+}
+.form-control:focus,
+.form-select:focus {
+    border-color:    var(--c-slate-700) !important;
+    box-shadow:      0 0 0 3px rgba(30,41,59,.12) !important;
+    outline:         none !important;
+    background-color: var(--c-white) !important;
+}
+.form-control::placeholder { color: var(--c-slate-400) !important; opacity: 1; }
+
+textarea.form-control {
+    resize:     vertical;
+    min-height: 90px;
+}
+
+/* Floating labels */
+.form-floating > .form-control { padding-top: 1.375rem !important; padding-bottom: 0.375rem !important; }
+.form-floating > label          { color: var(--c-slate-400) !important; font-weight: 400 !important; }
+.form-floating > .form-control::placeholder { color: transparent !important; }
+
+/* Checkbox / Radio */
+.form-check-input {
+    width:         1rem !important;
+    height:        1rem !important;
+    border:        1.5px solid var(--c-slate-300) !important;
+    border-radius: 0.25rem !important;
+    cursor:        pointer;
+    transition:    background-color var(--t-fast), border-color var(--t-fast) !important;
+}
+.form-check-input:checked {
+    background-color: var(--c-slate-800) !important;
+    border-color:     var(--c-slate-800) !important;
+}
+.form-check-input:focus {
+    box-shadow: 0 0 0 3px rgba(30,41,59,.12) !important;
+    outline:    none !important;
+}
+.form-check-label {
+    font-size:   var(--ui2-font-size-base) !important;
+    font-weight: 400 !important;
+    cursor:      pointer;
+    color:       var(--c-slate-700) !important;
+}
+
+/* Input group */
+.input-group-text {
+    background-color: var(--c-slate-50) !important;
+    border:           1px solid var(--c-slate-300) !important;
+    color:            var(--c-slate-500) !important;
+    font-size:        var(--ui2-font-size-sm) !important;
+}
+
+/* Validation */
+.form-control.is-valid   { border-color: var(--c-green-600)  !important; }
+.form-control.is-invalid { border-color: var(--c-red-600)    !important; }
+.valid-feedback          { color: var(--c-green-700)   !important; font-size: var(--ui2-font-size-xs) !important; }
+.invalid-feedback        { color: var(--c-red-600)     !important; font-size: var(--ui2-font-size-xs) !important; }
+
+
+/* ══════════════════════════════════════════════════════════
+   § 11  BUTTONS
+   ══════════════════════════════════════════════════════════ */
+.btn {
+    font-family:    var(--ui2-font-family) !important;
+    font-size:      var(--ui2-font-size-sm) !important;
+    font-weight:    500 !important;
+    border-radius:  var(--ui2-border-radius) !important;
+    padding:        0.5rem 1.125rem !important;
+    letter-spacing: 0.01em;
+    transition:     background-color var(--t-fast),
+                    border-color var(--t-fast),
+                    color var(--t-fast),
+                    box-shadow var(--t-fast),
+                    transform 100ms ease !important;
+    line-height:    1.5;
+}
+.btn:active { transform: translateY(0) !important; box-shadow: none !important; }
+
+/* Primary */
+.btn-primary {
+    background-color: var(--c-slate-800) !important;
+    border-color:     var(--c-slate-800) !important;
+    color:            var(--c-white) !important;
+}
+.btn-primary:hover {
+    background-color: var(--c-slate-900) !important;
+    border-color:     var(--c-slate-900) !important;
+    transform:        translateY(-1px);
+    box-shadow:       0 4px 8px -2px rgba(15,23,42,.3) !important;
+}
+
+/* Secondary */
+.btn-secondary {
+    background-color: transparent !important;
+    border:           1px solid var(--c-slate-300) !important;
+    color:            var(--c-slate-700) !important;
+}
+.btn-secondary:hover {
+    background-color: var(--c-slate-100) !important;
+    border-color:     var(--c-slate-400) !important;
+    color:            var(--c-slate-900) !important;
+}
+
+/* Danger */
+.btn-danger {
+    background-color: var(--c-red-600) !important;
+    border-color:     var(--c-red-600) !important;
+    color:            var(--c-white) !important;
+}
+.btn-danger:hover {
+    background-color: #b91c1c !important;
+    border-color:     #b91c1c !important;
+    transform:        translateY(-1px);
+    box-shadow:       0 4px 8px -2px rgba(220,38,38,.3) !important;
+}
+
+/* Success */
+.btn-success {
+    background-color: var(--c-green-600) !important;
+    border-color:     var(--c-green-600) !important;
+    color:            var(--c-white) !important;
+}
+.btn-success:hover {
+    background-color: var(--c-green-700) !important;
+    border-color:     var(--c-green-700) !important;
+    transform:        translateY(-1px);
+}
+
+/* Outline variants */
+.btn-outline-primary {
+    border-color: var(--c-slate-800) !important;
+    color:        var(--c-slate-800) !important;
+}
+.btn-outline-primary:hover {
+    background-color: var(--c-slate-800) !important;
+    color:            var(--c-white) !important;
+}
+
+/* Sizes */
+.btn-lg { padding: 0.625rem 1.5rem !important; font-size: 0.9375rem !important; }
+.btn-sm { padding: 0.3125rem 0.75rem !important; font-size: var(--ui2-font-size-xs) !important; }
+
+/* Icon-only button */
+.btn-link {
+    color:       var(--c-slate-500) !important;
+    text-decoration: none !important;
+    padding:     0.25rem !important;
+}
+.btn-link:hover { color: var(--c-slate-800) !important; }
+
+
+/* ══════════════════════════════════════════════════════════
+   § 12  ALERTS
+   ══════════════════════════════════════════════════════════ */
+.alert {
+    border-radius: var(--ui2-border-radius) !important;
+    font-size:     var(--ui2-font-size-sm) !important;
+    padding:       0.75rem 1rem !important;
+    border-width:  1px !important;
+    border-left-width: 4px !important;
+}
+.alert-danger  { background: var(--c-red-50)   !important; border-color: var(--c-red-200)   !important; color: var(--c-red-900)   !important; border-left-color: var(--c-red-600)   !important; }
+.alert-success { background: var(--c-green-50) !important; border-color: var(--c-green-500)  !important; color: var(--c-green-900) !important; border-left-color: var(--c-green-600) !important; }
+.alert-warning { background: var(--c-amber-50) !important; border-color: var(--c-amber-200)  !important; color: var(--c-amber-900) !important; border-left-color: var(--c-amber-600) !important; }
+.alert-info    { background: var(--c-sky-50)   !important; border-color: var(--c-sky-200)    !important; color: var(--c-sky-900)   !important; border-left-color: var(--c-sky-600)   !important; }
+
+
+/* ══════════════════════════════════════════════════════════
+   § 13  BADGES
+   ══════════════════════════════════════════════════════════ */
+.badge {
+    font-size:      0.6875rem !important;
+    font-weight:    600 !important;
+    letter-spacing: 0.02em !important;
+    border-radius:  var(--ui2-border-radius-full) !important;
+    padding:        0.2em 0.6em !important;
+}
+.badge.bg-primary   { background-color: var(--c-slate-800) !important; }
+.badge.bg-secondary { background-color: var(--c-slate-400) !important; }
+.badge.bg-success   { background-color: var(--c-green-600) !important; }
+.badge.bg-danger    { background-color: var(--c-red-600)   !important; }
+.badge.bg-warning   { background-color: var(--c-amber-600) !important; }
+
+
+/* ══════════════════════════════════════════════════════════
+   § 14  TABLES (Bootstrap)
+   ══════════════════════════════════════════════════════════ */
+.table {
+    font-size:    var(--ui2-font-size-sm) !important;
+    color:        var(--c-slate-700) !important;
+    border-color: var(--ui2-border-color) !important;
+}
+.table thead th {
+    font-size:      var(--ui2-font-size-xs) !important;
+    font-weight:    600 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color:          var(--c-slate-500) !important;
+    border-bottom:  2px solid var(--ui2-border-color) !important;
+    padding:        0.625rem 0.875rem !important;
+    background:     var(--c-slate-50) !important;
+}
+.table tbody td {
+    border-bottom:  1px solid var(--ui2-border-color-light) !important;
+    padding:        0.625rem 0.875rem !important;
+    vertical-align: middle;
+}
+.table tbody tr:hover td { background-color: var(--c-slate-50) !important; }
+.table-striped tbody tr:nth-of-type(odd) td { background-color: rgba(248,250,252,.7) !important; }
+
+
+/* ══════════════════════════════════════════════════════════
+   § 15  DROPDOWNS (general)
+   ══════════════════════════════════════════════════════════ */
+.dropdown-menu {
+    border:        1px solid var(--ui2-border-color) !important;
+    border-radius: var(--ui2-border-radius-lg) !important;
+    box-shadow:    var(--shadow-lg) !important;
+    padding:       0.375rem !important;
+    font-size:     var(--ui2-font-size-sm) !important;
+    animation:     mw-dropdown var(--t-fast) ease both;
+}
+.dropdown-item {
+    border-radius: var(--ui2-border-radius-sm) !important;
+    padding:       0.45rem 0.75rem !important;
+    color:         var(--c-slate-700) !important;
+    font-weight:   500;
+    transition:    background-color var(--t-fast) !important;
+}
+.dropdown-item:hover { background-color: var(--c-slate-100) !important; color: var(--c-slate-900) !important; }
+.dropdown-divider   { border-color: var(--ui2-border-color) !important; margin: 0.25rem 0.5rem !important; }
+
+
+/* ══════════════════════════════════════════════════════════
+   § 16  DEVEXTREME DATAGRID  (dx-*)
+   ══════════════════════════════════════════════════════════ */
+
+/* Wrapper */
+.dx-datagrid {
+    font-family: var(--ui2-font-family) !important;
+    font-size:   var(--ui2-font-size-sm) !important;
+    color:       var(--c-slate-700) !important;
+    background:  transparent !important;
+    border:      none !important;
+}
+
+/* Headers */
+.dx-datagrid-headers {
+    background-color: var(--c-slate-50) !important;
+    border-bottom:    2px solid var(--c-slate-200) !important;
+    color:            var(--c-slate-500) !important;
+}
+.dx-datagrid-headers .dx-header-row td {
+    font-size:      var(--ui2-font-size-xs) !important;
+    font-weight:    600 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color:          var(--c-slate-500) !important;
+    background-color: var(--c-slate-50) !important;
+    border-color:   var(--c-slate-200) !important;
+    padding:        0.625rem 0.75rem !important;
+}
+.dx-datagrid-headers .dx-header-row td:hover {
+    background-color: var(--c-slate-100) !important;
+    color:            var(--c-slate-700) !important;
+}
+
+/* Filter row */
+.dx-datagrid-filter-row td {
+    background-color: var(--c-slate-50) !important;
+    border-color:     var(--c-slate-200) !important;
+    padding:          0.375rem 0.5rem !important;
+}
+
+/* Rows */
+.dx-datagrid-rowsview {
+    border-color: var(--c-slate-200) !important;
+}
+.dx-data-row td {
+    border-bottom:  1px solid var(--c-slate-100) !important;
+    padding:        0.625rem 0.75rem !important;
+    vertical-align: middle;
+    color:          var(--c-slate-700) !important;
+    background-color: var(--c-white) !important;
+    transition:     background-color var(--t-fast) !important;
+}
+.dx-row-alt td {
+    background-color: var(--c-slate-50) !important;
+}
+.dx-data-row:hover td {
+    background-color: #f1f5f9 !important;
+}
+
+/* Selection */
+.dx-datagrid .dx-selection td,
+.dx-datagrid .dx-selection.dx-row-alt td {
+    background-color: #e0e7ff !important;
+    color:            var(--c-slate-900) !important;
+}
+
+/* Column lines */
+.dx-column-lines td { border-right: 1px solid var(--c-slate-100) !important; }
+.dx-datagrid-headers .dx-column-lines td { border-right: 1px solid var(--c-slate-200) !important; }
+
+/* Focus */
+.dx-datagrid .dx-focused-cell {
+    box-shadow:    inset 0 0 0 2px rgba(30,41,59,.2) !important;
+    border-radius: 3px;
+}
+
+/* Sort icons */
+.dx-sort { color: var(--c-slate-400) !important; }
+.dx-sort-up, .dx-sort-down { color: var(--c-slate-700) !important; }
+
+/* Filter menu icon */
+.dx-header-filter { color: var(--c-slate-400) !important; }
+.dx-header-filter.dx-header-filter-empty { opacity: 0.4 !important; }
+.dx-header-filter:hover { color: var(--c-slate-700) !important; }
+
+/* Text editors inside datagrid (filter row inputs) */
+.dx-datagrid .dx-texteditor {
+    border-radius: var(--ui2-border-radius-sm) !important;
+}
+.dx-datagrid .dx-editor-outlined {
+    border: 1px solid var(--c-slate-200) !important;
+    border-radius: var(--ui2-border-radius-sm) !important;
+    background-color: var(--c-white) !important;
+    transition: border-color var(--t-fast) !important;
+}
+.dx-datagrid .dx-editor-outlined:hover {
+    border-color: var(--c-slate-400) !important;
+}
+.dx-datagrid .dx-editor-outlined.dx-state-focused {
+    border-color: var(--c-slate-700) !important;
+    box-shadow:   0 0 0 3px rgba(30,41,59,.1) !important;
+}
+.dx-datagrid .dx-texteditor-input {
+    font-family: var(--ui2-font-family) !important;
+    font-size:   var(--ui2-font-size-xs) !important;
+    color:       var(--c-slate-700) !important;
+    padding:     0.3rem 0.5rem !important;
+}
+
+/* Pager */
+.dx-pager {
+    background-color: var(--c-slate-50) !important;
+    border-top:       1px solid var(--c-slate-200) !important;
+    padding:          0.5rem 0.75rem !important;
+    font-size:        var(--ui2-font-size-xs) !important;
+    color:            var(--c-slate-500) !important;
+}
+.dx-page {
+    font-size:     var(--ui2-font-size-xs) !important;
+    font-weight:   500 !important;
+    color:         var(--c-slate-500) !important;
+    border:        1px solid transparent !important;
+    border-radius: var(--ui2-border-radius-sm) !important;
+    padding:       0.2rem 0.55rem !important;
+    margin:        0 1px !important;
+    cursor:        pointer;
+    transition:    background-color var(--t-fast), color var(--t-fast), border-color var(--t-fast) !important;
+}
+.dx-page:hover {
+    background-color: var(--c-slate-200) !important;
+    color:            var(--c-slate-800) !important;
+}
+.dx-page.dx-selection {
+    background-color: var(--c-slate-800) !important;
+    border-color:     var(--c-slate-800) !important;
+    color:            var(--c-white) !important;
+    font-weight:      600 !important;
+}
+.dx-navigate-button { color: var(--c-slate-500) !important; }
+.dx-navigate-button:hover { color: var(--c-slate-800) !important; }
+.dx-page-size { border-radius: var(--ui2-border-radius-sm) !important; }
+
+/* No data message */
+.dx-datagrid-nodata {
+    font-size:   var(--ui2-font-size-sm) !important;
+    color:       var(--c-slate-400) !important;
+    font-weight: 500 !important;
+}
+
+/* DevExtreme buttons inside grid */
+.dx-button {
+    border-radius: var(--ui2-border-radius-sm) !important;
+    font-family:   var(--ui2-font-family) !important;
+    font-size:     var(--ui2-font-size-xs) !important;
+    font-weight:   500 !important;
+    transition:    background-color var(--t-fast), border-color var(--t-fast) !important;
+}
+.dx-button-mode-contained.dx-button-normal {
+    background-color: var(--c-white) !important;
+    border:           1px solid var(--c-slate-300) !important;
+    color:            var(--c-slate-700) !important;
+}
+.dx-button-mode-contained.dx-button-normal:hover {
+    background-color: var(--c-slate-100) !important;
+    border-color:     var(--c-slate-400) !important;
+}
+
+/* Scrollable area */
+.dx-scrollable-scroll-content { background: var(--c-slate-300) !important; border-radius: 9999px !important; }
+.dx-scrollable-scroll-content:hover { background: var(--c-slate-400) !important; }
+
+/* Context menu */
+.dx-context-menu .dx-menu-items-container {
+    border:        1px solid var(--ui2-border-color) !important;
+    border-radius: var(--ui2-border-radius-lg) !important;
+    box-shadow:    var(--shadow-lg) !important;
+    padding:       0.375rem !important;
+    font-size:     var(--ui2-font-size-sm) !important;
+}
+.dx-context-menu .dx-menu-item { border-radius: var(--ui2-border-radius-sm) !important; }
+.dx-context-menu .dx-menu-item:hover > .dx-menu-item-content {
+    background-color: var(--c-slate-100) !important;
+    border-radius:    var(--ui2-border-radius-sm) !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   § 17  FOOTER
+   ══════════════════════════════════════════════════════════ */
+footer,
+.sb-footer {
+    font-size:  var(--ui2-font-size-xs) !important;
+    color:      var(--c-slate-400) !important;
+    padding:    1rem 1.5rem !important;
+    border-top: 1px solid var(--ui2-border-color) !important;
+    background: transparent !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   § 18  LOGIN PAGE
+   ══════════════════════════════════════════════════════════ */
+#uie_login-container {
+    display:         flex;
+    align-items:     center;
+    justify-content: center;
+    min-height:      100vh;
+    padding:         2rem 1rem;
+}
+
+/* Reset bootstrap grid for login */
+#uie_login-container .container { max-width: 420px !important; padding: 0 !important; }
+#uie_login-container .row       { margin: 0 !important; }
+#uie_login-container .col-md-4  {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+}
+
+/* Login card */
+#uie_login-container .card {
+    background:    rgba(255,255,255,.06) !important;
+    border:        1px solid rgba(255,255,255,.1) !important;
+    box-shadow:    0 32px 64px -12px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.04) !important;
+    border-radius: 1.25rem !important;
+    overflow:      hidden;
+    margin-top:    0 !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+#uie_login-container .card-header {
+    background:    rgba(255,255,255,.04) !important;
+    border-bottom: 1px solid rgba(255,255,255,.08) !important;
+    padding:       1.25rem 1.5rem !important;
+}
+#uie_login-container .card-header .card-title {
+    color:       rgba(255,255,255,.92) !important;
+    font-size:   1rem !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.02em;
+}
+
+#uie_login-container .card-body {
+    background: transparent !important;
+    padding:    1.5rem !important;
+}
+
+/* Login inputs */
+#uie_login-container .form-control {
+    background-color: rgba(255,255,255,.07) !important;
+    border:           1px solid rgba(255,255,255,.12) !important;
+    color:            rgba(255,255,255,.9) !important;
+    border-radius:    var(--ui2-border-radius) !important;
+}
+#uie_login-container .form-control:hover {
+    border-color: rgba(255,255,255,.22) !important;
+}
+#uie_login-container .form-control:focus {
+    background-color: rgba(255,255,255,.1) !important;
+    border-color:     rgba(255,255,255,.35) !important;
+    box-shadow:       0 0 0 3px rgba(255,255,255,.08) !important;
+}
+#uie_login-container .form-control::placeholder { color: transparent !important; }
+#uie_login-container .form-floating > label     { color: rgba(255,255,255,.4) !important; font-weight: 400 !important; }
+
+/* Login CTA — white on dark */
+#uie_login-container .btn-primary {
+    background-color: var(--c-white) !important;
+    border-color:     var(--c-white) !important;
+    color:            var(--c-slate-900) !important;
+    font-weight:      600 !important;
+}
+#uie_login-container .btn-primary:hover {
+    background-color: var(--c-slate-100) !important;
+    border-color:     var(--c-slate-100) !important;
+    box-shadow:       0 4px 16px rgba(0,0,0,.35) !important;
+    transform:        translateY(-1px);
+}
+
+/* Forgot password link */
+#uie_login-container a {
+    color:     rgba(148,163,184,.8) !important;
+    font-size: var(--ui2-font-size-sm) !important;
+}
+#uie_login-container a:hover { color: rgba(241,245,249,.9) !important; }
+
+/* Login loading/error messages */
+#uie_login-wait    { color: rgba(255,255,255,.6) !important; }
+#uie_login-message { margin-top: 0.75rem !important; }
+#uie_login-message .alert-danger {
+    background: rgba(220,38,38,.15) !important;
+    border-color: rgba(220,38,38,.3) !important;
+    color: rgba(252,165,165,.95) !important;
+    border-left-color: rgba(220,38,38,.6) !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   § 19  UX LAYER — Principios aplicados
+   ══════════════════════════════════════════════════════════ */
+
+/* ── 19.1  Text selection (brand-consistent) ── */
+::selection      { background-color: rgba(30,41,59,.15); color: var(--c-slate-900); }
+::-moz-selection { background-color: rgba(30,41,59,.15); color: var(--c-slate-900); }
+
+
+/* ── 19.2  Focus-visible (WCAG AA — teclado/accesibilidad) ──
+   Solo muestra el ring con teclado, no con mouse.
+   Elimina el outline feo del browser y pone uno de marca. */
+:focus          { outline: none; }
+:focus-visible  {
+    outline:        2px solid var(--c-slate-700) !important;
+    outline-offset: 2px !important;
+    border-radius:  var(--ui2-border-radius-sm) !important;
+}
+/* Dentro del sidebar el ring es blanco para contraste */
+.sb-sidenav :focus-visible {
+    outline-color: rgba(255,255,255,.7) !important;
+}
+/* Botones ya tienen su propio ring — refinarlo */
+.btn:focus-visible {
+    outline:        2px solid var(--c-slate-700) !important;
+    outline-offset: 3px !important;
+    box-shadow:     none !important;
+}
+
+
+/* ── 19.3  (Breadcrumb inline → ver § 6 consolidado) ── */
+/* ── 19.4  (Divider → ver § 6 consolidado) ── */
+
+
+/* ── 19.5  Logout link — Gestalt + Error Prevention ──
+   El logout es una acción destructiva/salida.
+   Debe ser visualmente distinto para evitar clics accidentales
+   pero sin ser alarmante (no es peligroso, solo es salida). */
+.sb-sidenav-menu a[href*="logout"] {
+    color:      rgba(252,165,165,.65) !important;
+    margin-top: 2px !important;
+}
+.sb-sidenav-menu a[href*="logout"]:hover {
+    color:            rgba(252,165,165,.95) !important;
+    background-color: rgba(239,68,68,.1) !important;
+    border-left-color: rgba(239,68,68,.4) !important;
+}
+.sb-sidenav-menu a[href*="logout"] .sb-nav-link-icon {
+    opacity: 0.65 !important;
+}
+
+
+/* ── 19.6  Sidebar stagger animation (Gestalt: continuidad) ──
+   Los items entran uno a uno, guiando el ojo de arriba a abajo. */
+.sb-sidenav-menu .nav > a.nav-link:nth-child(1) { animation: mw-fadein var(--t-slow) .05s ease both; }
+.sb-sidenav-menu .nav > a.nav-link:nth-child(2) { animation: mw-fadein var(--t-slow) .10s ease both; }
+.sb-sidenav-menu .nav > a.nav-link:nth-child(3) { animation: mw-fadein var(--t-slow) .15s ease both; }
+.sb-sidenav-menu .nav > a.nav-link:nth-child(4) { animation: mw-fadein var(--t-slow) .20s ease both; }
+.sb-sidenav-menu .nav > a.nav-link:nth-child(5) { animation: mw-fadein var(--t-slow) .25s ease both; }
+.sb-sidenav-menu .nav > a.nav-link:nth-child(6) { animation: mw-fadein var(--t-slow) .30s ease both; }
+
+
+/* ── 19.7  Footer (override Bootstrap bg-light) ──
+   bg-light usa !important en Bootstrap → necesitamos especificidad */
+footer.py-4.bg-light,
+footer.mt-auto,
+footer.bg-light {
+    background-color: var(--ui2-body-bg) !important;
+    border-top:       1px solid var(--ui2-border-color) !important;
+}
+footer .text-muted {
+    color: var(--c-slate-400) !important;
+    font-size: var(--ui2-font-size-xs) !important;
+}
+
+
+/* ── 19.8  Max-width para legibilidad (longitud de línea ~80ch) ──
+   Líneas muy largas rompen la lectura. Se limita el contenido
+   sin apretar el layout. */
+#layoutSidenav_content main .container-fluid {
+    max-width: 1400px !important;
+}
+
+
+/* ── 19.9  DataGrid wrapper (.mw_ui_inner_space) ──
+   El datagrid flotaba sin contexto. Ahora tiene card visual. */
+.mw_ui_inner_space {
+    background-color: var(--c-white);
+    border:           1px solid var(--ui2-border-color);
+    border-radius:    0 0 var(--ui2-card-radius) var(--ui2-card-radius);
+    overflow:         hidden;
+}
+/* Cuando está solo (sin navbar encima) tiene radius completo */
+.card > .mw_ui_inner_space,
+.card-body > .mw_ui_inner_space {
+    border:        none;
+    border-radius: 0;
+}
+
+
+/* ── 19.10  DataGrid — density y legibilidad ──
+   Filas de 90px son un desperdicio de espacio visual.
+   Reducimos padding sin comprimir el contenido. */
+.dx-datagrid .dx-data-row td {
+    padding: 0.5rem 0.75rem !important;
+}
+/* Pero permitimos que la imagen dicte la altura mínima */
+.dx-datagrid .dx-data-row td img {
+    max-height: 48px;
+    width:      auto;
+}
+
+/* Highlight de fila más suave — no tan saturado */
+.dx-datagrid .dx-data-row:hover td {
+    background-color: var(--c-slate-50) !important;
+    cursor: pointer;
+}
+
+/* Estado vacío — más visible y centrado */
+.dx-datagrid-nodata {
+    font-size:   0.9375rem !important;
+    font-weight: 500 !important;
+    color:       var(--c-slate-400) !important;
+    padding:     3rem !important;
+    text-align:  center !important;
+}
+
+/* Scrollbar del datagrid — ultra thin */
+.dx-scrollable-scrollbar.dx-scrollbar-vertical .dx-scrollable-scroll {
+    width: 4px !important;
+}
+.dx-scrollable-scrollbar.dx-scrollbar-horizontal .dx-scrollable-scroll {
+    height: 4px !important;
+}
+
+
+/* ── 19.11  Form field spacing (Fitts + Gestalt Proximity) ──
+   mb-3 de Bootstrap = 1rem. Con Inter y el scale actual,
+   1.25rem entre campos mejora la legibilidad sin desperdiciar. */
+.card-body .mb-3,
+.card-body .mb-4 {
+    margin-bottom: 1.25rem !important;
+}
+/* Último campo antes del botón — menos margen */
+.card-body .mb-3:last-of-type {
+    margin-bottom: 0.75rem !important;
+}
+
+
+/* ── 19.12  currentUINavBar — eliminar bg-light Bootstrap ── */
+.currentUINavBar.bg-light,
+.currentUINavBar.navbar-light {
+    background-color: var(--c-white) !important;
+}
+
+
+/* ── 19.13  Topbar — mejor separador visual del sidebar ──
+   La unión sidebar-topbar necesita un punto de anclaje. */
+.sb-topnav .navbar-brand {
+    position:    relative;
+    padding-left: 0 !important;
+}
+/* Dot accent antes del brand name */
+.sb-topnav .navbar-brand::before {
+    content:          "·";
+    color:            var(--c-slate-300);
+    margin-right:     0.375rem;
+    font-size:        1.5rem;
+    line-height:      1;
+    vertical-align:   middle;
+}
+
+
+/* ── 19.14  Tap targets mínimos (Fitts's Law) ──
+   Todo elemento interactivo debe tener al menos 44px de área táctil. */
+.sb-sidenav-menu .nav-link {
+    min-height: 44px !important;
+    display:    flex !important;
+    align-items: center !important;
+}
+.btn {
+    min-height: 36px !important;
+}
+.nav-tabs .nav-link,
+.currentUINavBar .nav-link {
+    min-height: 44px !important;
+    display:    flex !important;
+    align-items: center !important;
+}
+
+
+/* ── 19.15  Sidebar HR divider — antes del logout ──
+   Gestalt de agrupamiento: separar navegación de acciones destructivas. */
+.sb-sidenav-menu hr.sidebar-divider {
+    border-color: rgba(255,255,255,.08) !important;
+    margin:       0.625rem 1rem !important;
+    opacity:      1 !important;
+    display:      block !important;  /* override d-none d-md-block */
+}
+
+
+/* ── 19.16  Tabla dentro de cards — sin doble borde ── */
+.card > .table,
+.card-body > .table {
+    margin-bottom: 0 !important;
+}
+.card > .table thead th:first-child,
+.card-body > .table thead th:first-child { border-left: none !important; }
+.card > .table thead th:last-child,
+.card-body > .table thead th:last-child  { border-right: none !important; }
+
+
+/* ── 19.17  Modales (si existen) — consistencia ── */
+.modal-content {
+    border:        1px solid var(--ui2-border-color) !important;
+    border-radius: var(--ui2-border-radius-xl) !important;
+    box-shadow:    var(--shadow-xl) !important;
+}
+.modal-header {
+    border-bottom: 1px solid var(--ui2-border-color) !important;
+    padding:       1.125rem 1.5rem !important;
+}
+.modal-footer {
+    border-top: 1px solid var(--ui2-border-color) !important;
+    padding:    1rem 1.5rem !important;
+}
+.modal-title {
+    font-size:   1rem !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.02em;
+}
+
+
+/* ── 19.18  Print styles ──
+   Si alguien imprime, que sea limpio. */
+@media print {
+    .sb-topnav,
+    .sb-sidenav,
+    .currentUINavBar,
+    footer,
+    .btn { display: none !important; }
+
+    #layoutSidenav_content {
+        margin-left: 0 !important;
+        padding:     0 !important;
+    }
+    .card {
+        box-shadow: none !important;
+        border:     1px solid #ccc !important;
+    }
+    body {
+        background: #fff !important;
+        color: #000 !important;
+    }
+}
+
+
+/* ── 19.19  Responsive sidebar toggle (mobile) ── */
+@media (max-width: 992px) {
+    .sb-sidenav-menu .nav > a.nav-link {
+        margin: 1px 8px !important;
+    }
+    #layoutSidenav_content main {
+        padding: 1rem !important;
+    }
+}
+
+/* ── 19.20  Reduced motion (accesibilidad del sistema operativo) ──
+   Si el usuario tiene "reducir movimiento" activo en el SO,
+   desactivamos todas las animaciones y transiciones. */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration:   0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration:  0.01ms !important;
+    }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   § 20  CUSTOM SCROLLBAR
+   ─────────────────────────────────────────────────────────────────
+   Thin, low-contrast scrollbar on Chromium/Edge.
+   Firefox usa scrollbar-width/scrollbar-color (estándar W3C).
+   Safari ignora los ::-webkit-* pero usa el overlay nativo que
+   ya es discreto, así que no necesita reglas adicionales.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--c-slate-300) transparent;
+}
+
+/* Chromium / Edge */
+::-webkit-scrollbar {
+    width:  6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background:    transparent;
+}
+::-webkit-scrollbar-thumb {
+    background:    var(--c-slate-300);
+    border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--c-slate-400);
+}
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+/* Sidebar scroll — más oscuro porque el fondo ya es oscuro */
+.sb-sidenav-menu::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,.18);
+}
+.sb-sidenav-menu::-webkit-scrollbar-thumb:hover {
+    background: rgba(255,255,255,.32);
+}
+.sb-sidenav-menu {
+    scrollbar-color: rgba(255,255,255,.18) transparent;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   § 21  DATAGRID EMPTY STATE
+   ─────────────────────────────────────────────────────────────────
+   Cuando el grid no tiene datos DevExtreme renderiza un
+   .dx-empty-message dentro de .dx-datagrid-nodata.
+   Le damos un estilo de "empty state" limpio con ícono SVG inline.
+   ═══════════════════════════════════════════════════════════════════ */
+
+.dx-datagrid-nodata {
+    position: relative !important;
+}
+
+.dx-datagrid .dx-empty-message {
+    display:         flex !important;
+    flex-direction:  column !important;
+    align-items:     center !important;
+    justify-content: center !important;
+    gap:             0.5rem !important;
+    padding:         3rem 1rem !important;
+    color:           var(--c-slate-400) !important;
+    font-size:       var(--ui2-font-size-sm) !important;
+    font-weight:     500 !important;
+    letter-spacing:  0.01em !important;
+}
+
+/* SVG icon via ::before — inbox/empty-box shape */
+.dx-datagrid .dx-empty-message::before {
+    content: "";
+    display: block;
+    width:   48px;
+    height:  48px;
+    opacity: 0.35;
+    background-color: var(--c-slate-400);
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'/%3E%3C/svg%3E");
+    -webkit-mask-size: contain;
+            mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+            mask-position: center;
+}
+
+/* Tooltip improvements — alinea con la paleta */
+.tooltip-inner {
+    background-color: var(--c-slate-800) !important;
+    color:            var(--c-white) !important;
+    font-size:        var(--ui2-font-size-xs) !important;
+    padding:          0.3rem 0.6rem !important;
+    border-radius:    var(--ui2-border-radius-sm) !important;
+    box-shadow:       var(--ui2-shadow-md) !important;
+}
+.bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before,
+.bs-tooltip-top .tooltip-arrow::before {
+    border-top-color: var(--c-slate-800) !important;
+}
+.bs-tooltip-auto[data-popper-placement^=bottom] .tooltip-arrow::before,
+.bs-tooltip-bottom .tooltip-arrow::before {
+    border-bottom-color: var(--c-slate-800) !important;
+}
+.bs-tooltip-auto[data-popper-placement^=start] .tooltip-arrow::before,
+.bs-tooltip-start .tooltip-arrow::before {
+    border-left-color: var(--c-slate-800) !important;
+}
+.bs-tooltip-auto[data-popper-placement^=end] .tooltip-arrow::before,
+.bs-tooltip-end .tooltip-arrow::before {
+    border-right-color: var(--c-slate-800) !important;
 }
