@@ -1,0 +1,103 @@
+/* ============================================================
+   MERALDA Default Theme - Corporate Blue
+   
+   Professional corporate theme with navy blues and subtle accents.
+   Ideal for business applications and enterprise environments.
+   ============================================================ */
+
+:root {
+    /* Primary colors - Corporate navy */
+    --ui2-primary: #1e40af;           /* Blue 800 */
+    --ui2-primary-hover: #1e3a8a;     /* Blue 900 */
+    --ui2-primary-rgb: 30, 64, 175;
+    
+    /* Secondary - Slate */
+    --ui2-secondary: #64748b;         /* Slate 500 */
+    --ui2-secondary-hover: #475569;   /* Slate 600 */
+    
+    /* Danger - Professional red */
+    --ui2-danger: #dc2626;            /* Red 600 */
+    --ui2-danger-hover: #b91c1c;      /* Red 700 */
+    --ui2-danger-bg: #fee2e2;
+    --ui2-danger-text: #7f1d1d;
+    --ui2-danger-text-alt: #991b1b;
+    
+    /* Success - Professional green */
+    --ui2-success: #059669;           /* Emerald 600 */
+    --ui2-success-hover: #047857;     /* Emerald 700 */
+    --ui2-success-bg: #d1fae5;
+    --ui2-success-bg-alt: #d1fae5;
+    --ui2-success-text-alt: #065f46;
+    
+    /* Warning - Professional amber */
+    --ui2-warning: #d97706;           /* Amber 600 */
+    --ui2-warning-hover: #b45309;     /* Amber 700 */
+    --ui2-warning-text-alt: #78350f;
+    
+    /* Info - Professional blue */
+    --ui2-info: #0284c7;              /* Sky 600 */
+    --ui2-info-hover: #0369a1;        /* Sky 700 */
+    --ui2-info-bg-alt: #e0f2fe;
+    --ui2-info-text-alt: #0c4a6e;
+    
+    /* Authentication - Clean professional */
+    --ui2-auth-bg-start: #f8fafc;     /* Slate 50 */
+    --ui2-auth-bg-end: #e2e8f0;       /* Slate 200 */
+    
+    --ui2-auth-glass-bg: rgba(255, 255, 255, 0.95);
+    --ui2-auth-glass-border: rgba(30, 64, 175, 0.15);
+    
+    --ui2-auth-card-header-bg: rgba(30, 64, 175, 0.05);
+    --ui2-auth-card-header-border: rgba(30, 64, 175, 0.2);
+    
+    --ui2-auth-input-bg: #ffffff;
+    --ui2-auth-input-border: rgba(30, 64, 175, 0.25);
+    --ui2-auth-input-hover-border: rgba(30, 64, 175, 0.4);
+    --ui2-auth-input-focus-border: rgba(30, 64, 175, 0.6);
+    --ui2-auth-input-focus-shadow: rgba(30, 64, 175, 0.1);
+    
+    --ui2-auth-label: rgba(30, 41, 59, 0.8);
+    --ui2-auth-label-active: #1e293b;
+    --ui2-auth-placeholder: rgba(100, 116, 139, 0.5);
+    
+    --ui2-auth-btn-bg: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+    --ui2-auth-btn-hover-bg: linear-gradient(135deg, #1e3a8a 0%, #1e3a8a 100%);
+    --ui2-auth-btn-text: #ffffff;
+    --ui2-auth-btn-hover-shadow: rgba(30, 64, 175, 0.3);
+    
+    --ui2-auth-link: rgba(30, 64, 175, 0.85);
+    --ui2-auth-link-hover: #1e40af;
+    
+    --ui2-auth-text: #1e293b;
+    --ui2-auth-text-muted: rgba(100, 116, 139, 0.7);
+    
+    /* Sidebar - Professional navy */
+    --ui2-sidebar-bg: #1e3a8a;
+    --ui2-sidebar-bg-solid: #1e3a8a;
+    --ui2-sidebar-color: rgba(219, 234, 254, 0.8);
+    --ui2-sidebar-color-hover: rgba(239, 246, 255, 0.95);
+    --ui2-sidebar-color-active: #eff6ff;
+    --ui2-sidebar-heading-color: rgba(147, 197, 253, 0.5);
+    --ui2-sidebar-active-bg: rgba(59, 130, 246, 0.25);
+    --ui2-sidebar-hover-bg: rgba(59, 130, 246, 0.15);
+    
+    --ui2-sidebar-indicator-hover: rgba(96, 165, 250, 0.6);
+    --ui2-sidebar-indicator-active: rgba(147, 197, 253, 0.9);
+    
+    /* Topbar - Light professional */
+    --ui2-topbar-bg: #ffffff;
+    --ui2-topbar-color: rgba(51, 65, 85, 0.8);
+    --ui2-topbar-color-hover: #1e293b;
+    --ui2-topbar-hover-bg: rgba(30, 64, 175, 0.08);
+    --ui2-topbar-brand-color: #1e40af;
+    --ui2-topbar-border: rgba(226, 232, 240, 1);
+    
+    /* Body - Clean white */
+    --ui2-body-bg: #f8fafc;
+    --ui2-body-color: #1e293b;
+    --ui2-content-bg: #ffffff;
+    
+    --ui2-card-bg: #ffffff;
+    --ui2-card-border: rgba(226, 232, 240, 1);
+    --ui2-card-header-bg: rgba(248, 250, 252, 1);
+}

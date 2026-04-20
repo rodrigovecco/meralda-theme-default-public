@@ -1,0 +1,105 @@
+/* ============================================================
+   MERALDA Default Theme - Dark Ocean
+   
+   Professional dark theme with deep blues and cyan accents.
+   Perfect for nighttime use and reduced eye strain.
+   ============================================================ */
+
+:root {
+    /* Primary colors - Deep blue */
+    --ui2-primary: #0ea5e9;           /* Sky 500 */
+    --ui2-primary-hover: #0284c7;     /* Sky 600 */
+    --ui2-primary-rgb: 14, 165, 233;
+    
+    /* Secondary - Cyan */
+    --ui2-secondary: #06b6d4;         /* Cyan 500 */
+    --ui2-secondary-hover: #0891b2;   /* Cyan 600 */
+    
+    /* Danger - Red */
+    --ui2-danger: #ef4444;            /* Red 500 */
+    --ui2-danger-hover: #dc2626;      /* Red 600 */
+    --ui2-danger-bg: #450a0a;
+    --ui2-danger-text: #fecaca;
+    --ui2-danger-text-alt: #fca5a5;
+    
+    /* Success - Teal */
+    --ui2-success: #14b8a6;           /* Teal 500 */
+    --ui2-success-hover: #0d9488;     /* Teal 600 */
+    --ui2-success-bg: #042f2e;
+    --ui2-success-bg-alt: #042f2e;
+    --ui2-success-text-alt: #5eead4;
+    
+    /* Warning - Orange */
+    --ui2-warning: #f97316;           /* Orange 500 */
+    --ui2-warning-hover: #ea580c;     /* Orange 600 */
+    --ui2-warning-text-alt: #fed7aa;
+    
+    /* Info - Blue */
+    --ui2-info: #3b82f6;              /* Blue 500 */
+    --ui2-info-hover: #2563eb;        /* Blue 600 */
+    --ui2-info-bg-alt: #172554;
+    --ui2-info-text-alt: #bfdbfe;
+    
+    /* Authentication - Dark ocean glassmorphism */
+    --ui2-auth-bg-start: #0c4a6e;     /* Sky 900 */
+    --ui2-auth-bg-end: #082f49;       /* Sky 950 */
+    
+    --ui2-auth-glass-bg: rgba(14, 165, 233, 0.1);
+    --ui2-auth-glass-border: rgba(14, 165, 233, 0.3);
+    
+    --ui2-auth-card-header-bg: rgba(6, 182, 212, 0.12);
+    --ui2-auth-card-header-border: rgba(6, 182, 212, 0.3);
+    
+    --ui2-auth-input-bg: rgba(12, 74, 110, 0.6);
+    --ui2-auth-input-border: rgba(14, 165, 233, 0.3);
+    --ui2-auth-input-hover-bg: rgba(12, 74, 110, 0.8);
+    --ui2-auth-input-hover-border: rgba(14, 165, 233, 0.5);
+    --ui2-auth-input-focus-bg: rgba(12, 74, 110, 0.9);
+    --ui2-auth-input-focus-border: rgba(14, 165, 233, 0.7);
+    --ui2-auth-input-focus-shadow: rgba(14, 165, 233, 0.2);
+    
+    --ui2-auth-label: rgba(186, 230, 253, 0.7);
+    --ui2-auth-label-active: #bae6fd;
+    --ui2-auth-placeholder: rgba(14, 165, 233, 0.4);
+    
+    --ui2-auth-btn-bg: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+    --ui2-auth-btn-hover-bg: linear-gradient(135deg, #0284c7 0%, #0891b2 100%);
+    --ui2-auth-btn-text: #ffffff;
+    --ui2-auth-btn-hover-shadow: rgba(14, 165, 233, 0.5);
+    
+    --ui2-auth-link: rgba(125, 211, 252, 0.85);
+    --ui2-auth-link-hover: #7dd3fc;
+    
+    --ui2-auth-text: #e0f2fe;
+    --ui2-auth-text-muted: rgba(186, 230, 253, 0.6);
+    
+    /* Sidebar - Deep ocean */
+    --ui2-sidebar-bg: #0c4a6e;
+    --ui2-sidebar-bg-solid: #0c4a6e;
+    --ui2-sidebar-color: rgba(186, 230, 253, 0.7);
+    --ui2-sidebar-color-hover: rgba(224, 242, 254, 0.95);
+    --ui2-sidebar-color-active: #e0f2fe;
+    --ui2-sidebar-heading-color: rgba(14, 165, 233, 0.5);
+    --ui2-sidebar-active-bg: rgba(14, 165, 233, 0.25);
+    --ui2-sidebar-hover-bg: rgba(14, 165, 233, 0.15);
+    
+    --ui2-sidebar-indicator-hover: rgba(14, 165, 233, 0.6);
+    --ui2-sidebar-indicator-active: rgba(56, 189, 248, 0.9);
+    
+    /* Topbar - Dark */
+    --ui2-topbar-bg: #082f49;
+    --ui2-topbar-color: rgba(186, 230, 253, 0.75);
+    --ui2-topbar-color-hover: #e0f2fe;
+    --ui2-topbar-hover-bg: rgba(14, 165, 233, 0.15);
+    --ui2-topbar-brand-color: #7dd3fc;
+    --ui2-topbar-border: rgba(14, 165, 233, 0.2);
+    
+    /* Body - Dark ocean */
+    --ui2-body-bg: #0f172a;
+    --ui2-body-color: #cbd5e1;
+    --ui2-content-bg: #1e293b;
+    
+    --ui2-card-bg: #1e293b;
+    --ui2-card-border: rgba(14, 165, 233, 0.15);
+    --ui2-card-header-bg: rgba(14, 165, 233, 0.08);
+}

@@ -1,18 +1,4 @@
 ﻿/* ============================================================
-   MERALDA Default Theme - Custom Color Overrides
-   
-   This file is intentionally empty. To apply a custom theme:
-   
-   1. Extend this class in your project
-   2. Override the add_default_css_sheets() method
-   3. Load one of the available color schemes:
-      - /res/themes/default/css/summer-sunflower.css
-      - /res/themes/default/css/dark-ocean.css
-      - /res/themes/default/css/corporate-blue.css
-   
-   See mainuitemplate.php for detailed instructions.
-   ============================================================ */
-/* ============================================================
    MERALDA Default Theme - Custom Color Scheme
    
    DEMOSTRACIÓN: Cambio total de colores usando solo variables
